@@ -1,0 +1,32 @@
+[
+  {
+    "id": "11-11",
+    "word": "Hi",
+    "solution": "Hola",
+    "level": 2,
+    "lastReview": 18,
+    "nextReviewInto": null,
+    "idOwner": "uuid",
+    "album": "otroUUID"
+  },
+  {
+    "id": "uuid",
+    "word": "Bye",
+    "solution": "Adios",
+    "level": 0,
+    "lastReview": 19,
+    "nextReviewInto": null,
+    "idOwner": "uuid",
+    "album": "otroUUID"
+  },
+  {
+    "id": "uuid",
+    "word": "Good",
+    "solution": "Bien",
+    "level": 1,
+    "lastReview": 18,
+    "nextReviewInto": null,
+    "idOwner": "uuid",
+    "album": "otroUUID"
+  }
+]
