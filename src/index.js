@@ -2,8 +2,12 @@ import express, {json} from 'express'
 import cors from 'cors';
 import morgan from 'morgan'
 import { config } from 'dotenv'
+
+// Import Routes
 import { cardsRouter } from './routes/cards.js';
 import { albumsRouter } from './routes/albums.js';
+import { authRouter } from './routes/auth.js';
+import cookieParser from 'cookie-parser';
 
 config()
 
@@ -15,10 +19,12 @@ app.use(json())
 app.disable('x-powered-by')
 app.use(cors())
 app.use(morgan('dev'))
+app.use(cookieParser())
 
 // Routes
 app.use('/api', albumsRouter)
 app.use('/api', cardsRouter)
+app.use('/api', authRouter)
 
 
 // Error Handler
