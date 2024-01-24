@@ -2,6 +2,7 @@ import express, {json} from 'express'
 import cors from 'cors';
 import morgan from 'morgan'
 import { config } from 'dotenv'
+config()
 
 // Import Routes
 import { cardsRouter } from './routes/cards.js';
@@ -9,7 +10,6 @@ import { albumsRouter } from './routes/albums.js';
 import { authRouter } from './routes/auth.js';
 import cookieParser from 'cookie-parser';
 
-config()
 
 const PORT = process.env.PORT ?? 3005;
 
@@ -22,9 +22,9 @@ app.use(morgan('dev'))
 app.use(cookieParser())
 
 // Routes
-app.use('/api', albumsRouter)
-app.use('/api', cardsRouter)
 app.use('/api', authRouter)
+app.use('/api', albumsRouter)
+app.use('/api/album', cardsRouter)
 
 
 // Error Handler

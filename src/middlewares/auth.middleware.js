@@ -1,15 +1,18 @@
+import { config } from 'dotenv';
 import jwt from 'jsonwebtoken'
+config()
 
 const confidentialPassword = process.env.MYPLAINTEXTPASSWORD
 
 export const isAuth = (req, res, next) => {
   const { token } = req.cookies
   if (!token) {
-    return res.status(401).json({ message: 'No estas autorizado' })
+    return res.status(401).json({ message: 'No estas autorizado!' })
   }
 
   jwt.verify(token, confidentialPassword, (err, decoded) => {
     if (err) {
+      console.log(err);
       return res.status(401).json({
         message: 'No estas autorizado'
       })

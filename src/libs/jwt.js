@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken'
 
-const MYPLAINTEXTPASSWORD = process.env.MYPLAINTEXTPASSWORD
+const confidentialPassword = process.env.MYPLAINTEXTPASSWORD
 
 export const createAccessToken = (payload) => {
   return new Promise((resolve, reject) => {
     jwt.sign(
       payload,
-      MYPLAINTEXTPASSWORD,
+      confidentialPassword,
       {
         expiresIn: '1d'
       },
