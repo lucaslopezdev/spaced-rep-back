@@ -1,8 +1,8 @@
-import Router from 'express-promise-router';
-import { AuthController } from '../controllers/auth.js';
-import { isAuth } from '../middlewares/auth.middleware.js';
-import { signupSchema, signinSchema } from '../schemas/auth.schema.js';
-import { validateSchema } from '../middlewares/validate.middleware.js';
+import Router from 'express-promise-router'
+import { AuthController } from '../controllers/auth.js'
+import { isAuth } from '../middlewares/auth.middleware.js'
+import { signupSchema, signinSchema } from '../schemas/auth.schema.js'
+import { validateSchema } from '../middlewares/validate.middleware.js'
 
 export const authRouter = Router()
 

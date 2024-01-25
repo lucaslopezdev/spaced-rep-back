@@ -1,4 +1,4 @@
-import { config } from 'dotenv';
+import { config } from 'dotenv'
 import jwt from 'jsonwebtoken'
 config()
 
@@ -12,7 +12,7 @@ export const isAuth = (req, res, next) => {
 
   jwt.verify(token, confidentialPassword, (err, decoded) => {
     if (err) {
-      console.log(err);
+      console.log(err)
       return res.status(401).json({
         message: 'No estas autorizado'
       })

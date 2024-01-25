@@ -7,11 +7,10 @@ export class AlbumController {
     const response = await pool.query(
       'SELECT * FROM album_cards WHERE user_id = $1',
       [userId]
-    ) 
+    )
     res.status(200).json(response.rows)
   }
 
-  // Creates a new Album with a randomUUID
   static async createNewAlbum(req, res) {
     const userId = req.userId
     const { name } = req.body
@@ -47,9 +46,11 @@ export class AlbumController {
       [albumId, userId]
     )
     console.log(result)
-    
+
     if (!result.rowCount) {
-      return res.status(404).json({ message: 'El album no existe o no te pertenece' })
+      return res
+        .status(404)
+        .json({ message: 'El album no existe o no te pertenece' })
     }
     res.sendStatus(204)
   }

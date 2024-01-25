@@ -1,6 +1,6 @@
-import Router from 'express-promise-router';
-import { AlbumController } from '../controllers/albums.js';
-import { isAuth } from '../middlewares/auth.middleware.js';
+import Router from 'express-promise-router'
+import { AlbumController } from '../controllers/albums.js'
+import { isAuth } from '../middlewares/auth.middleware.js'
 
 export const albumsRouter = Router()
 

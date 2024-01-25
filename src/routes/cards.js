@@ -11,4 +11,4 @@ cardsRouter.get('/:albumId', isAuth, CardController.getAll)
 cardsRouter.get('/:albumId/:cardId', isAuth, CardController.getCardById) 
 cardsRouter.post('/:albumId', isAuth, validateSchema(createCardSchema), CardController.createCard) 
 cardsRouter.patch('/:albumId/:cardId', isAuth, validateSchema(updateCardSchema), CardController.updateCard) 
-cardsRouter.delete('/:albumId/:cardId', isAuth, CardController.deleteCard) // fn que elimine una card por ID
+cardsRouter.delete('/:albumId/:cardId', isAuth, CardController.deleteCard)

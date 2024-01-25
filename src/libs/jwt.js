@@ -11,7 +11,7 @@ export const createAccessToken = (payload) => {
         expiresIn: '1d'
       },
       (err, token) => {
-        if(err) reject(err)
+        if (err) reject(err)
         resolve(token)
       }
     )
