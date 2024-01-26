@@ -26,7 +26,7 @@ CREATE TABLE Cards (
   name VARCHAR(255) NOT NULL,
   solution TEXT NOT NULL,
   level INTEGER NOT NULL DEFAULT 0,
-  last_review DATE,
+  last_review VARCHAR,
   next_review_interval INTEGER,
   user_id UUID,
   album_id UUID,

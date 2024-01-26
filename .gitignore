@@ -4,3 +4,7 @@ package-lock.json
 
 // Variables de entorno
 .env
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
