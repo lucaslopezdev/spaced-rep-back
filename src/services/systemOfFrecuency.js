@@ -8,12 +8,17 @@ nivel 6: mensual
 nivel 7: bimestral
 */
 
-const frecuency = [1, 2, 4, 7, 15, 30, 60]
+const frecuency = [0, 2, 4, 7, 15, 30, 60]
 
-export function updateCardsFrecuency(cards) {
-  return cards.map((card) => (card.nextReviewInto = frecuency[card.level]))
+export function updateCardFrecuency(card, answer) {
+  if (!answer) {
+    card.next_review_interval = 0
+    return card
+  }
+  card.next_review_interval = frecuency[card.level]
+  return card
 }
 
 export function decrementNextReviewCard(cards) {
-  return cards.map((card) => card.nextReviewInto--)
+  return cards.map((card) => card.next_review_interval--)
 }

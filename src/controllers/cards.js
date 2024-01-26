@@ -1,5 +1,8 @@
 import crypto from 'crypto'
 import { pool } from '../db.js'
+import { getDailyCards } from '../services/getDailyCards.js'
+import { randomCard } from '../services/randomCard.js'
+import { cardReview } from '../utils/cardsReview.js'
 
 export class CardController {
   static async getAll(req, res) {
@@ -13,19 +16,59 @@ export class CardController {
       return res.status(404).json({ message: 'No hay cards en este album' })
     }
 
+    // Aca tal vez, podriamos mandar las cards del album a cardsReview o desde alla hacer la llamada a este getAll, ya veremos
+
     res.status(200).json(result.rows)
   }
 
   static async getCardById(req, res) {
     const { cardId, albumId } = req.params
     const result = await pool.query(
-      'SELECT * FROM cards WHERE card_id = $1 AND album_id = $2',
+      'SELECT card_id, name, solution, level, last_review, next_review_interval, user_id, album_id FROM cards WHERE card_id = $1 AND album_id = $2',
       [cardId, albumId]
     )
 
     if (!result.rowCount) {
       return res.status(404).json({ message: 'No se encontró la tarjeta' })
     }
+
+    return res.status(200).json(result.rows[0])
+  }
+
+  static async getCardsToReview(req, res) {
+    console.log(req.params);
+    const userId = req.userId
+    const { albumId } = req.params
+
+    const result = await pool.query(
+      'SELECT * FROM cards WHERE album_id = $1 AND user_id = $2',
+      [albumId, userId]
+    )
+
+    const card = await randomCard(getDailyCards(result.rows))
+
+    return res.status(200).json(card)
+  }
+
+  static async sendAnswerCard (req, res) {
+    const userId = req.userId
+    const { albumId } = req.params
+    const { card_id, answer } = req.body
+
+    const currentlyCard = await pool.query(
+      'SELECT * FROM cards WHERE album_id = $1 AND card_id = $2 AND user_id = $3',
+      [albumId, card_id, userId]
+    )
+    const cardReviewed = currentlyCard.rows[0]
+
+    console.log({cardReviewed});
+
+    const resultCard = await cardReview(cardReviewed, answer)
+
+    const result = await pool.query(
+      'UPDATE cards SET last_review = $1, next_review_interval = $2, level = $3 WHERE album_id = $4 AND card_id = $5 AND user_id = $6 RETURNING *',
+      [resultCard.last_review, resultCard.next_review_interval, resultCard.level, albumId, card_id, userId]
+    )
 
     return res.status(200).json(result.rows[0])
   }

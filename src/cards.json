@@ -4,8 +4,8 @@
     "word": "Hi",
     "solution": "Hola",
     "level": 2,
-    "lastReview": 18,
-    "nextReviewInto": null,
+    "lastReview": null,
+    "nextReviewInto": 0,
     "idOwner": "uuid",
     "album": "otroUUID"
   },
@@ -14,8 +14,8 @@
     "word": "Bye",
     "solution": "Adios",
     "level": 0,
-    "lastReview": 19,
-    "nextReviewInto": null,
+    "lastReview": null,
+    "nextReviewInto": 0,
     "idOwner": "uuid",
     "album": "otroUUID"
   },
@@ -24,8 +24,8 @@
     "word": "Good",
     "solution": "Bien",
     "level": 1,
-    "lastReview": 18,
-    "nextReviewInto": null,
+    "lastReview": null,
+    "nextReviewInto": 2,
     "idOwner": "uuid",
     "album": "otroUUID"
   }
