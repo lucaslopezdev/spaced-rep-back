@@ -8,6 +8,8 @@ nivel 6: mensual
 nivel 7: bimestral
 */
 
+import { pool } from "../db.js"
+
 const frecuency = [0, 2, 4, 7, 15, 30, 60]
 
 export function updateCardFrecuency(card, answer) {
@@ -19,6 +21,24 @@ export function updateCardFrecuency(card, answer) {
   return card
 }
 
-export function decrementNextReviewCard(cards) {
-  return cards.map((card) => card.next_review_interval--)
+export async function decrementNextReviewCard() {
+  try {
+    const cards = await pool.query('SELECT * FROM cards');
+
+    for (const card of cards.rows) {
+      if (card.next_review_interval !== 0) {
+        card.next_review_interval--;
+
+        await pool.query(
+          'UPDATE cards SET next_review_interval = $1 WHERE card_id = $2', 
+          [card.next_review_interval, card.card_id]
+        );
+      }
+    }
+
+    return cards.rows;
+  } catch (error) {
+    console.error('Error al actualizar las tarjetas:', error);
+    throw error;
+  }
 }

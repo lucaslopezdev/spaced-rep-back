@@ -1,6 +1,7 @@
 import express, { json } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
+import cron from 'node-cron'
 import { config } from 'dotenv'
 config()
 
@@ -9,6 +10,7 @@ import { cardsRouter } from './routes/cards.js'
 import { albumsRouter } from './routes/albums.js'
 import { authRouter } from './routes/auth.js'
 import cookieParser from 'cookie-parser'
+import { decrementNextReviewCard } from './services/systemOfFrecuency.js'
 
 const PORT = process.env.PORT ?? 3005
 
@@ -19,6 +21,12 @@ app.disable('x-powered-by')
 app.use(cors())
 app.use(morgan('dev'))
 app.use(cookieParser())
+
+// Cron to update the next_review_interval of cards every day
+cron.schedule('0 0 * * *', () => {
+  decrementNextReviewCard()
+  console.log('Se ejecuto el cron');
+})
 
 // Routes
 app.use('/api', authRouter)

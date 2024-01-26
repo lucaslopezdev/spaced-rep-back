@@ -1,32 +1,32 @@
 [
   {
-    "id": "11-11",
-    "word": "Hi",
+    "card_id": "1e1e1398-0941-47a4-945c-e1961765d7e5",
+    "name": "Hi",
     "solution": "Hola",
-    "level": 2,
-    "lastReview": null,
-    "nextReviewInto": 0,
-    "idOwner": "uuid",
-    "album": "otroUUID"
+    "level": 1,
+    "last_review": "2024-1-25",
+    "next_review_interval": 0,
+    "user_id": "0ffd69df-431d-4584-9c68-4db61b440e1a",
+    "album_id": "301d3903-46cc-4bcf-b897-6fd4178ed2cc"
   },
   {
-    "id": "uuid",
-    "word": "Bye",
+    "card_id": "37a41a9b-9442-4b6a-bac4-91983093f748",
+    "name": "Bye",
     "solution": "Adios",
     "level": 0,
-    "lastReview": null,
-    "nextReviewInto": 0,
-    "idOwner": "uuid",
-    "album": "otroUUID"
+    "last_review": null,
+    "next_review_interval": 2,
+    "user_id": "0ffd69df-431d-4584-9c68-4db61b440e1a",
+    "album_id": "301d3903-46cc-4bcf-b897-6fd4178ed2cc"
   },
   {
-    "id": "uuid",
-    "word": "Good",
-    "solution": "Bien",
-    "level": 1,
-    "lastReview": null,
-    "nextReviewInto": 2,
-    "idOwner": "uuid",
-    "album": "otroUUID"
+    "card_id": "59dc3b12-7a19-4935-b89f-894d387d9ef4",
+    "name": "Hello",
+    "solution": "Hola",
+    "level": 0,
+    "last_review": "2024-1-25",
+    "next_review_interval": 4,
+    "user_id": "0ffd69df-431d-4584-9c68-4db61b440e1a",
+    "album_id": "301d3903-46cc-4bcf-b897-6fd4178ed2cc"
   }
 ]
