@@ -2,18 +2,17 @@ import express, { ErrorRequestHandler, json } from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import cron from 'node-cron'
-import { config } from 'dotenv'
-config()
+import 'dotenv/config'
 
 // Import Types
-import { ErrorHandlerMiddleware } from './types.ts';
+import { ErrorHandlerMiddleware } from './types';
 
 // Import Routes
 import { cardsRouter } from './routes/cards.js'
 import { albumsRouter } from './routes/albums.js'
 import { authRouter } from './routes/auth.js'
 import cookieParser from 'cookie-parser'
-import { decrementNextReviewCard } from './services/systemOfFrecuency.js'
+import { decrementNextReviewCard } from './services/systemOfFrecuency'
 
 const PORT = process.env.PORT ?? 3005
 

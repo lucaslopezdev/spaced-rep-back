@@ -8,11 +8,12 @@ nivel 6: mensual
 nivel 7: bimestral
 */
 
-import { pool } from "../db.js"
+import { pool } from "../db"
+import { Card } from "../types.js"
 
 const frecuency = [0, 2, 4, 7, 15, 30, 60]
 
-export function updateCardFrecuency(card, answer) {
+export function updateCardFrecuency(card: Card, answer: boolean): Card {
   if (!answer) {
     card.next_review_interval = 0
     return card
@@ -21,7 +22,7 @@ export function updateCardFrecuency(card, answer) {
   return card
 }
 
-export async function decrementNextReviewCard() {
+export async function decrementNextReviewCard(): Promise<Card[]> {
   try {
     const cards = await pool.query('SELECT * FROM cards');
 

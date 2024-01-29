@@ -1,4 +1,6 @@
-export const getToday = () => {
+import { LastReview } from "../types"
+
+export const getToday = (): LastReview => {
   // Get the current date
   const currentDate = new Date()
   // Get the day and month to next day

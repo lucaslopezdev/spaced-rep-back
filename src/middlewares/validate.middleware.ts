@@ -1,4 +1,6 @@
-export const validateSchema = (schema) => async (req, res, next) => {
+import { ValidateSchema } from "../types"
+
+export const validateSchema: ValidateSchema = (schema) => async (req, res, next) => {
   try {
     await schema.parse(req.body)
     next()

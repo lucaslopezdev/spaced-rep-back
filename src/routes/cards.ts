@@ -2,7 +2,7 @@ import Router from 'express-promise-router';
 import { CardController } from '../controllers/cards.js';
 import { isAuth } from '../middlewares/auth.middleware.js';
 import { createCardSchema, updateCardSchema } from '../schemas/card.schema.js';
-import { validateSchema } from '../middlewares/validate.middleware.js';
+import { validateSchema } from '../middlewares/validate.middleware';
 
 export const cardsRouter = Router()
 
