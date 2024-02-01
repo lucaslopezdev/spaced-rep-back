@@ -25,3 +25,10 @@ export interface Card {
 export interface Payload {
   userId: string
 }
+
+interface CustomRequest extends Request {
+  cookies: {
+    [key: string]: string;
+  }
+  userId?: string;
+}

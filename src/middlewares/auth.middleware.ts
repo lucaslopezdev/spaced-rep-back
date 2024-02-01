@@ -1,17 +1,24 @@
+import { Response, NextFunction } from 'express';
+import { CustomRequest } from '../types';
+
 import { config } from 'dotenv'
 import jwt from 'jsonwebtoken'
 config()
 
-const confidentialPassword = process.env.MYPLAINTEXTPASSWORD
+const confidentialPassword: string | undefined = process.env.MYPLAINTEXTPASSWORD
 
-export const isAuth = (req, res, next) => {
+if (!confidentialPassword) {
+  throw new Error('Confidential password not defined');
+}
+
+export const isAuth = (req: CustomRequest, res:Response, next: NextFunction): Response | void => {
   const { token } = req.cookies
   if (!token) {
     return res.status(401).json({ message: 'No estas autorizado!' })
   }
 
-  jwt.verify(token, confidentialPassword, (err, decoded) => {
-    if (err) {
+  jwt.verify(token, confidentialPassword, (err, decoded): Response | void => {
+    if (err || !decoded || typeof decoded !== 'object' || !('id' in decoded)) {
       console.log(err)
       return res.status(401).json({
         message: 'No estas autorizado'
@@ -28,5 +35,6 @@ export const isAuth = (req, res, next) => {
     req.userId = decoded.id
 
     next()
+    ;
   })
 }
