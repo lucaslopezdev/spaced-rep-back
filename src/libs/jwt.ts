@@ -1,8 +1,13 @@
 import jwt from 'jsonwebtoken'
+import { Payload } from '../types'
 
-const confidentialPassword = process.env.MYPLAINTEXTPASSWORD
+const confidentialPassword: string | undefined = process.env.MYPLAINTEXTPASSWORD
 
-export const createAccessToken = (payload) => {
+if (!confidentialPassword) {
+  throw new Error('Confidential password not defined');
+}
+
+export const createAccessToken = (payload: Payload): Promise<string> => {
   return new Promise((resolve, reject) => {
     jwt.sign(
       payload,
@@ -12,7 +17,7 @@ export const createAccessToken = (payload) => {
       },
       (err, token) => {
         if (err) reject(err)
-        resolve(token)
+        resolve(token as string)
       }
     )
   })

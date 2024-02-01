@@ -21,3 +21,7 @@ export interface Card {
   user_id: `${string}-${string}-${string}-${string}-${string}`
   album_id: `${string}-${string}-${string}-${string}-${string}`
 }
+
+export interface Payload {
+  userId: string
+}
